@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -39,7 +40,7 @@ public class Main {
     }
 
 
-    public static void generateDiamond(int maxNum) {
+    public static void generateDiamond(int maxNum) throws InterruptedException {
 
         int max_num_length = String.valueOf(maxNum).length();
 
@@ -47,8 +48,9 @@ public class Main {
             if ((loopDir % 2) == 0) { // check the modulus of loopDir/2 to determine forward or reverse direction
                 for (int loop_iter = 0; loop_iter <= maxNum; loop_iter++) {
                     int curr_num_length = String.valueOf(loop_iter).length();
+                    TimeUnit.MILLISECONDS.sleep(2);
 
-                    for (int line_index = -maxNum/2; line_index <= maxNum*2; line_index++) {
+                    for (int line_index = -(maxNum/2)-1; line_index <= maxNum*2; line_index++) {
 
                         if ((line_index <= (maxNum / 2) + loop_iter) && (line_index >= (maxNum / 2) - loop_iter)) {
                             System.out.print(" ".repeat(max_num_length-curr_num_length) + loop_iter);
@@ -65,10 +67,11 @@ public class Main {
 
                 }
             } else {
-                for (int loop_iter = maxNum; loop_iter >= 0; loop_iter--) {
+                for (int loop_iter = maxNum-1; loop_iter >= 0; loop_iter--) {
                     int curr_num_length = String.valueOf(loop_iter).length();
+                    TimeUnit.MILLISECONDS.sleep(2);
 
-                    for (int line_index = -maxNum/2; line_index <= maxNum*2; line_index++) {
+                    for (int line_index = -(maxNum/2)-1; line_index <= maxNum*2; line_index++) {
 
                         if ((line_index <= (maxNum / 2) + loop_iter) && (line_index >= (maxNum / 2) - loop_iter)) {
                             System.out.print(" ".repeat(max_num_length-curr_num_length) + loop_iter);
@@ -88,7 +91,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // write your code here
         Scanner scanner = new Scanner(System.in);
 
